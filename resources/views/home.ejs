@@ -1,0 +1,45 @@
+<!-- <%- include('./partials/header') %> -->
+
+<section class="hero container mx-auto flex my-5">
+  <div class="w-1/2 flex flex-col justify-center items-center">
+    <span class="block text-xl font-bold">Ary you hungry?</span>
+    <span class="block text-4xl font-bold my-3">Don't wait!</span>
+    <button class="order-btn">Order now</button>
+  </div>
+  <div class="w-1/2">
+    <img src="./images/main.jpg" alt="" srcset="">
+  </div>
+</section>
+
+<section class="menu container mx-auto">
+  <h2 class="text-2xl font-bold my-3">All Pizza's</h2>
+  <div class="pb-12">
+
+    <% if(pizzas.length){ %>
+      <!-- add all pizza  -->
+      <div class="grid grid-cols-5 gap-x-4 gap-y-8">
+
+        <% pizzas.forEach(pizza => { %>
+          <div class=" w-full">
+            <a class="block relative h-48 rounded overflow-hidden">
+              <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="./images/<%= pizza.image %>">
+            </a>
+            <div class="mt-4 text-center">
+              <h3 class=" text-xl font-bold tracking-widest my-2"> <%= pizza.name %> </h3>
+              <span class="size px-3 py-2 rounded-full font-medium"><%= pizza.size %></span>
+              <div class="flex justify-between px-5">
+                <span class="mt-1 font-bold">$<%= pizza.price %></span>
+                <button data-pizza="<%= JSON.stringify(pizza)  %>" class="add-to-card mt-1"> + Add</button>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+
+      </div>
+      <% } %>
+
+  </div>
+
+</section>
+<!-- </body>
+</html> -->

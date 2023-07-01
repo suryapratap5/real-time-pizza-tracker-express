@@ -1,0 +1,30 @@
+[
+    {
+      "_id": {
+        "$oid": "5ee69lkjsdfldlkjs8udk"
+      },
+      "name": "carbonara",
+      "image": "pizza.png",
+      "price": "120",
+      "size": "small"
+    },
+    {
+      "_id": {
+        "$oid": "5ee6sdfldlkjs8udk345"
+      },
+      "name": "margherita",
+      "image": "margherita.png",
+      "price": "100",
+      "size": "medium"
+    },
+    {
+      "_id": {
+        "$oid": "5ee6kjdfs8udk345fldlkjs9"
+      },
+      "name": "pepperoni",
+      "image": "pepperoni.png",
+      "price": "140",
+      "size": "large"
+    }
+  ]
+  

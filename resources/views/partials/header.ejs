@@ -1,0 +1,25 @@
+<header class="body-font container mx-auto my-1">
+  <div class="mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+      <img class="w-10" src="./images/logo.jpg" alt="" srcset="">
+      <span class="ml-3 text-xl font-bold">Pizza's</span>
+    </a>
+    <nav class="nav-right md:ml-auto flex flex-wrap items-center text-base justify-center">
+      <a href="/" class="mr-5 ">Menu</a>
+      <a href="/offers" class="mr-5 ">Offers</a>
+
+      <% if (user) { %>
+        <form id="userLogout" action="/logout" method="post">
+          <a href="#" onclick="document.getElementById('userLogout').submit()" class="mr-5 ">Logout</a>
+        </form>
+        <% } else { %>
+          <a href="/register" class="mr-5 ">Register</a>
+          <a href="/login" class="mr-5 ">Login</a>
+      <% } %>
+      <a href="/cart" class="cart w-10 inline-flex items-center  border-0 focus:outline-none rounded text-base mt-4 md:mt-0">
+       <img src="./images/cart.webp" alt="" srcset="">
+       <span id="cartCounter" class="text-xl font-bold"> <%= session.cart ? session.cart.totalQty : 0 %></span>
+      </a>
+    </nav>
+  </div>
+</header>

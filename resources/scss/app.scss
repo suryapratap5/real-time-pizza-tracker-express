@@ -1,0 +1,109 @@
+@import './variables';
+@import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss';
+
+body{
+    font-family: 'Lato', sans-sarif;
+    -webkit-font-smoothing: antialiased;
+    color: $dark;
+}
+
+.nav-right {
+
+     a{
+    cursor: pointer;
+    font-weight: bold;
+        &:hover{
+            color: $primary;
+        }
+    }
+}
+
+#cartCounter{
+    color: $primary;
+}
+
+section.hero{
+    background: $secondary;
+    .order-btn{
+        background: $primary;
+        color: white;
+        padding: 3px 5px;
+        border-radius: 14px;
+
+        &:hover{
+            background: $primary-hover;
+        }
+    }
+}
+
+
+.size{
+    background: $secondary;
+}
+
+.add-to-card{
+    padding: 3px 10px;
+    background: $pure;
+    border: 2px solid $primary;
+    border-radius: 20px;
+    color: $primary;
+    transition: $tranisition;
+
+    &:hover{
+        background: $primary;
+        border-color: $pure;
+        color: $pure;
+    }
+}
+
+.cart-page{
+    background: $secondary;
+}
+
+.go-back{
+    color: $primary;
+    border-color: $primary;
+
+    &:hover{
+        color: $pure;
+        background: $primary;
+    }
+}
+
+.totalAmout{
+color: $primary;
+}
+
+.text-input{
+    border: 1px solid $gray;
+}
+
+.order-now{
+    color: $pure;
+    background: $primary;
+
+    &:hover{
+        background: $primary-hover;
+    }
+}
+
+section.login{
+    background: $secondary;
+    // min-height: calc(100vh-2vh);
+}
+
+.auth-btn{
+    background: $primary;
+    color: $pure;
+
+    &:hover{
+        background: $primary-hover;
+    }
+}
+
+.noty_theme_mint {
+    border-radius: 50px !important;
+    padding-left: 8px !important;
+    color: $primary !important;
+}
