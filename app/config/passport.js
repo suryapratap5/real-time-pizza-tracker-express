@@ -19,8 +19,7 @@ function init(passport) {
             if (match) {
                 return done(null, user, { message: 'Logged in successfully' })
             }
-
-            console.log('wrong email or password')
+            
             return done(null, false, { message: 'Wrong username or password' })
         } catch (error) {
             console.log(error, 'err')

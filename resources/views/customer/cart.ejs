@@ -24,20 +24,37 @@
             <hr class="my-3">
             <div class="orders-detail text-right">
                 <h3 class="text-xl font-bold">Total Amout: <span class="totalAmout">$<%= session.cart.totalPrice %></span></h3>
-                <form action="">
-                    <input class="text-input block ml-auto my-3 outline-none px-2 w-80" type="text" name="address"
+                <% if (user) { %>
+                <form action="/orders" method="post" id="paymentForm">
+
+                    <select name="paymentType" id="paymentType" class="block appearance-none w-80 ml-auto bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="cod">Cash on delivery</option>
+                                <option value="card">Pay with card</option>
+                                
+                    </select>
+
+                    <input class="text-input block ml-auto my-3 outline-none px-2 py-2 w-80" type="text" name="address"
                         placeholder="address">
-                    <input class="text-input block ml-auto my-3 outline-none px-2 w-80" type="number" name="phone"
+                    <input class="text-input block ml-auto my-3 outline-none px-2 py-2 w-80" type="number" name="phone"
                         placeholder="phone">
-    
-                    <!-- <button class="order-now block ml-auto border px-4 py-2 rounded-full" type="submit">Order now</button> -->
+
+                    <div id="cardElement" class="w-80 ml-auto mb-2" >
+
+                    </div>
+                    
+                        <button class="order-now block ml-auto border px-4 py-2 rounded-full" type="submit">Order now</button>
+                  
                 </form>
+                <%  } %>
             </div>
     
-            <div class="text-right">
-                <a href="/login" class="order-now border px-4 my-2 py-2 inline-block rounded-full ml-auto">Login to
-                    continue</a>
-            </div>
+            <% if (!user) { %>
+                <div class="text-right">
+                    <a href="/login" class="order-now border px-4 my-2 py-2 inline-block rounded-full ml-auto">Login to
+                        continue</a>
+                </div>
+            <%  } %>
+           
     
     
         </div>

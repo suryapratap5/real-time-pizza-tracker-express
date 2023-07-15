@@ -11,10 +11,8 @@ function authController() {
 
         async postLogin(req, res, next){
             passport.authenticate('local', (err, user, info) =>{
-                console.log(user,'user >>>>>>>>>')
-                console.log(info,'info >>>>>>>>>')
+            
                 if(err){
-                    console.log(err, 'errrrr')
                     req.flash('error', info.message)
                     return next(err)
                 }
@@ -71,7 +69,13 @@ function authController() {
                 })
 
                const registerUser = await user.save()
-               return res.redirect('/')
+
+               req.login(registerUser, function(err) {
+                console.log(registerUser, 'register user')
+                if (err) { return next(err); }
+                res.redirect('/');
+              });
+            //    return res.redirect('/')
                 
             } catch (error) {
                 console.log(error, 'error')

@@ -9,6 +9,7 @@ const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo');
 const passport = require('passport')
 const initRoutes = require('./routes/web')
+const Emitter = require('events')
 
 const port = process.env.PORT || 3000
 
@@ -23,6 +24,10 @@ async function main(){
     // console.log(connection,'connection')
   
 }
+
+// Event emitter
+const eventEmitter = new Emitter()
+app.set('eventEmitter', eventEmitter)
 
 
 // Session config
@@ -68,6 +73,31 @@ app.use(expressLayouts)
 initRoutes(app)
 
 
-app.listen(port, () =>{
+const server = app.listen(port, () =>{
     console.log(`Server is listening on http://localhost:${port}`)
 })
+
+
+// socket 
+const io = require('socket.io')(server)
+io.on('connection', (socket) => {
+    console.log('socket connected', socket.id)
+
+    // join
+    socket.on('join', (orderId) =>{
+        console.log(orderId, 'orderId')
+        socket.join(orderId)
+    })
+
+})
+
+eventEmitter.on('orderUpdated', (data) =>{
+    console.log(`order_${data.id}`, '`order_${data.id}`')
+    io.to(`order_${data.id}`).emit('orderUpdated', data)
+})
+
+eventEmitter.on('orderPlaced', (data) =>{
+    io.to('adminRoom').emit('orderPlaced', data)
+})
+
+
