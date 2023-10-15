@@ -2,7 +2,8 @@ import axios from "axios";
 import Noty from 'noty'
 import initAdmin from "./admin";
 import moment from "moment";
-import initStripe from "./stripe";
+import { paymentForm } from "./apiService";
+import initCheckout from "./stripe";
 
 let addToCart = document.querySelectorAll('.add-to-card')
 let cartCounter = document.querySelector('#cartCounter')
@@ -90,7 +91,7 @@ function updatedStatus(order){
 updatedStatus(order)
 
 // payment gateway
-initStripe()
+initCheckout()
 
 
 // Socket
@@ -123,4 +124,6 @@ socket.on('orderUpdated', (data) => {
     }).show()
 })
 
+
+// paymentForm()
 

@@ -9,6 +9,7 @@ const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo');
 const passport = require('passport')
 const initRoutes = require('./routes/web')
+const paymentRoute = require('./routes/payment')
 const Emitter = require('events')
 
 const port = process.env.PORT || 3000
@@ -71,6 +72,8 @@ app.use(expressLayouts)
 
 // call initRoutes function for web related routes
 initRoutes(app)
+
+app.use(paymentRoute)
 
 
 const server = app.listen(port, () =>{

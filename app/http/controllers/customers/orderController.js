@@ -46,26 +46,30 @@ function orderController() {
                 // req.flash('success', 'Order placed successfully')
 
 
-                // stripe payment 
-               console.log(process.env.SECRET_KEY, 'secretet')
+                // Get client secret for stripe checkout page
                 if(paymentType === 'card'){
                     console.log(req.session.cart.totalPrice, stripeToken)
 
-                    stripe.paymentIntents.create({
+                   const paymentIntent =  await stripe.paymentIntents.create({
                         amount: req.session.cart.totalPrice * 100,
                         currency: 'inr',
+                        shipping : {
+                            address: {
+                                city: 'Kakrahti'
+                            },
+                            name : 'surya'
+                        },
+                        description: `Order id ${placedOrder._id}`,
                         automatic_payment_methods : {
                             enabled: true
                         }
-                    }).then((paymentIntent) =>{
-                        console.log(paymentIntent, 'intent')
-                        return res.send({
-                            clientSecret: paymentIntent.client_secret,
-                          });
-                    }).catch(err =>{
-                        console.log(err, 'err')
                     })
 
+                    console.log(paymentIntent)
+                    
+                    return res.send({
+                    clientSecret: paymentIntent.client_secret,
+                    });
                    
                 }
                 
@@ -73,7 +77,6 @@ function orderController() {
                 // emit
                 const eventEmitter = req.app.get('eventEmitter')
                 eventEmitter.emit('orderPlaced',  placedOrder)
-
               
                 delete req.session.cart
 

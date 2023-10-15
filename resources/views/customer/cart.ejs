@@ -23,9 +23,26 @@
     
             <hr class="my-3">
             <div class="orders-detail text-right">
+
+                <!-- Display a payment form -->
+                <form id="payment-form">
+                    <div id="link-authentication-element">
+                    <!--Stripe.js injects the Link Authentication Element-->
+                    </div>
+                    <div id="payment-element">
+                    <!--Stripe.js injects the Payment Element-->
+                    </div>
+                    <button id="submit">+
+                    <div class="spinner hidden" id="spinner"></div>
+                    <span id="button-text">Pay now</span>
+                    </button>
+                    <div id="payment-message" class="hidden"></div>
+                </form>
+
+
                 <h3 class="text-xl font-bold">Total Amout: <span class="totalAmout">$<%= session.cart.totalPrice %></span></h3>
                 <% if (user) { %>
-                <form action="/orders" method="post" id="paymentForm">
+                <form  method="post" id="paymentForm">
 
                     <select name="paymentType" id="paymentType" class="block appearance-none w-80 ml-auto bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
                                 <option value="cod">Cash on delivery</option>
@@ -37,10 +54,6 @@
                         placeholder="address">
                     <input class="text-input block ml-auto my-3 outline-none px-2 py-2 w-80" type="number" name="phone"
                         placeholder="phone">
-
-                    <div id="cardElement" class="w-80 ml-auto mb-2" >
-
-                    </div>
                     
                         <button class="order-now block ml-auto border px-4 py-2 rounded-full" type="submit">Order now</button>
                   
